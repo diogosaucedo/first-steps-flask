@@ -2,6 +2,8 @@ import json
 
 
 class Event:
+    """Event represents a single event"""
+
     id = 1
 
     def __init__(self, name, address=""):
@@ -11,16 +13,19 @@ class Event:
         Event.id += 1
 
     def print_info(self):
+        """Show information"""
         print(f"Event ID: {self.id}")
         print(f"Event name: {self.name}")
         print(f"Event address: {self.address}")
         print("----------------")
 
-    def toJSON(self):
+    def to_json(self):
+        """Return a JSON representation of the event"""
         return json.dumps(self.__dict__)
 
     @staticmethod
     def calculate_limit_people_area(area):
+        """Calculate the limit of people in the area"""
         if 5 <= area < 10:
             return 5
         elif 10 <= area < 20:
@@ -32,6 +37,8 @@ class Event:
 
 
 class OnlineEvent(Event):
+    """Event represents a single online event"""
+
     def __init__(self, name, _=""):
         local = f"https://tamarcado.com/eventos?id={OnlineEvent.id}"
         super().__init__(name, local)
@@ -43,8 +50,8 @@ class OnlineEvent(Event):
         print("----------------")
 
 
-ev_online = OnlineEvent("Live de Python")
-ev2_online = OnlineEvent("Live de JavaScript")
-ev = Event("Aula de Python", "Rio de Janeiro")
-
-events = [ev_online, ev2_online, ev]
+# add events to test
+events = []
+events.append(OnlineEvent("Live de JavaScript"))
+events.append(OnlineEvent("Live de Python"))
+events.append(Event("Aula de Python", "Rio de Janeiro"))
